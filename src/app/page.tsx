@@ -1,65 +1,139 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {  Brain, Users, MessageCircleHeart } from "lucide-react";
+import { FaDiscord, FaFacebook, FaTwitter } from "react-icons/fa";
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-linear-to-b from-[#0a0a0a] via-[#111] to-[#0a0a0a] text-gray-100 font-sans">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center px-8 py-4 border-b border-gray-800 backdrop-blur-md sticky top-0 z-50 bg-black/60">
+        <h1 className="text-2xl font-bold text-pink-400 tracking-wider">
+          UwU
+        </h1>
+        <div className="hidden md:flex space-x-8 text-sm font-medium">
+          <Link href="#home" className="hover:text-pink-400 transition">Home</Link>
+          <Link href="#features" className="hover:text-pink-400 transition">Features</Link>
+          <Link href="#characters" className="hover:text-pink-400 transition">Characters</Link>
+          <Link href="#howitworks" className="hover:text-pink-400 transition">How It Works</Link>
+          <Link href="#contact" className="hover:text-pink-400 transition">Contact</Link>
+        </div>
+        <Button className="bg-pink-500 hover:bg-pink-600 text-white shadow-lg shadow-pink-500/30 rounded-full">
+          Get Started
+        </Button>
+      </nav>
+
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-20 py-24 gap-10"
+      >
+        <div className="max-w-xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-bold mb-4 leading-tight text-white"
+          >
+            Chat with your <span className="text-pink-400">Favorite Anime Characters</span>
+          </motion.h1>
+          <p className="text-gray-400 mb-8">
+             Chat with Gojo, Levi, Luffy, Jotaro <br />or any of your favorite anime character - all powered by AI.
           </p>
+          <div className="flex space-x-4">
+            <Button className="bg-pink-500 hover:bg-pink-600 text-white rounded-full px-6">
+              Start Chatting
+            </Button>
+            <Button variant="outline" className="border-pink-500 text-pink-400 rounded-full">
+              Explore Characters
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3 }}
+          className="relative w-full max-w-sm"
+        >
+          <div className="w-full h-80 bg-linear-to-tr from-pink-500/40 to-purple-600/30 rounded-3xl shadow-inner flex items-center justify-center border border-gray-700">
+            <span className="text-gray-300 text-sm">Character Preview</span>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="px-8 lg:px-20 py-24 bg-black/40 border-t border-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-12 text-pink-400">Features</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { icon: <Brain className="w-8 h-8 text-pink-400" />, title: "AI Personality Engine", desc: "Realistic AI responses trained with anime character data." },
+            { icon: <MessageCircleHeart className="w-8 h-8 text-pink-400" />, title: "Emotive Conversations", desc: "Get replies that match tone, humor, and emotion of your favorite characters." },
+            { icon: <Users className="w-8 h-8 text-pink-400" />, title: "Community Mode", desc: "Chatrooms where multiple users talk with characters together." },
+          ].map((f, i) => (
+            <Card
+              key={i}
+              className="bg-linear-to-br from-gray-900 to-gray-800 border-gray-700 hover:shadow-pink-500/30 hover:scale-105 transition-all"
+            >
+              <CardContent className="flex flex-col items-center text-center py-8 px-6 space-y-4">
+                {f.icon}
+                <h3 className="text-lg font-semibold">{f.title}</h3>
+                <p className="text-gray-400 text-sm">{f.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Characters Section */}
+      <section id="characters" className="px-8 lg:px-20 py-24">
+        <h2 className="text-3xl font-bold text-center mb-12 text-pink-400">
+          Popular Characters
+        </h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {["Gojo", "Levi", "Luffy", "Mikasa", "Naruto", "Rem", "Zoro", "Makima"].map(
+            (name, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="rounded-2xl overflow-hidden bg-gray-900/70 border border-gray-800 hover:border-pink-500/50 cursor-pointer shadow-inner"
+              >
+                <div className="h-48 bg-gray-800 flex items-center justify-center text-gray-500 text-sm">
+                  {name} Image
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-lg font-semibold text-white">{name}</h3>
+                  <p className="text-gray-400 text-xs">Click to chat</p>
+                </div>
+              </motion.div>
+            )
+          )}
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="howitworks" className="px-8 lg:px-20 py-24 bg-black/40 border-t border-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-12 text-pink-400">How It Works</h2>
+        <div className="max-w-3xl mx-auto text-gray-400 space-y-6 text-center">
+          <p>1️⃣ Choose your favorite anime character.</p>
+          <p>2️⃣ Our AI loads their personality, tone, and backstory using AniList data.</p>
+          <p>3️⃣ Start chatting naturally — every reply feels like the real character!</p>
+          <p>4️⃣ Save chats, get quotes, or generate custom roleplay scenes.</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer id="contact" className="py-10 border-t border-gray-800 text-center bg-black/60">
+        <p className="text-gray-500 mb-4">© 2025 UwU Chat. All rights reserved.</p>
+        <div className="flex justify-center space-x-6 text-pink-400">
+          <FaDiscord size={20} />
+          <FaTwitter size={20} />
+          <FaFacebook size={20} />
+        </div>
+      </footer>
+    </main>
   );
 }

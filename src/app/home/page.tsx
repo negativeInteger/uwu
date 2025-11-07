@@ -25,43 +25,30 @@ export default function HomeLayout() {
     { icon: Download, label: 'Downloads', href: '/downloads' },
   ];
 
-  const trendingCharacters = [
-    { name: 'Epic Battles', duration: '2 min' },
-    { name: 'Fan Favorites', duration: '5 min' },
-    { name: 'Legendary Heroes', duration: '8 min' },
-    { name: 'Villain Vibes', duration: '3 min' },
-    { name: 'Plot Twists', duration: '6 min' },
-  ];
-
   const characterInteractions = [
-    { name: 'Lisa from Genshin', time: '2 min ago', avatar: 'L' },
-    { name: 'Sakura Haruno', time: '5 min ago', avatar: 'S' },
-    { name: 'A disney quote', time: '8 min ago', avatar: 'D' },
-    { name: 'Lisa Shore Ban', time: '10 min ago', avatar: 'L' },
-    { name: 'Musa Redman Tier', time: '12 min ago', avatar: 'M' },
-    { name: 'Naruto Uzumaki', time: '15 min ago', avatar: 'N' },
-    { name: 'Yuno Gasai', time: '18 min ago', avatar: 'Y' },
-    { name: 'Sasuke Uchiha', time: '20 min ago', avatar: 'S' },
-    { name: 'Hearing Friend', time: '22 min ago', avatar: 'H' },
+    { name: 'Lisa', time: '2 min ago', avatar: 'L' },
+    { name: 'Sakura', time: '5 min ago', avatar: 'S' },
+    { name: 'Dio', time: '8 min ago', avatar: 'D' },
+    { name: 'Levu', time: '10 min ago', avatar: 'L' },
+    { name: 'Mash', time: '12 min ago', avatar: 'M' },
+    { name: 'Naruto', time: '15 min ago', avatar: 'N' },
+    { name: 'Yuno', time: '18 min ago', avatar: 'Y' },
+    { name: 'Sasuke', time: '20 min ago', avatar: 'S' },
+    { name: 'Gabimaru ', time: '22 min ago', avatar: 'G' },
   ];
 
   const updateCards = [
-    { title: 'Anime Update 1', subtitle: 'New episode alert' },
-    { title: 'Character Spotlight', subtitle: 'Behind the scenes' },
-    { title: 'Fan Art Drop', subtitle: 'Community creations' },
-    { title: 'Voice Actor News', subtitle: 'Interviews & more' },
+    { image: 'levi.jpg', name: 'Levi', anime: "Attack on Titan" },
+    { image: 'gojo.jpg', name: 'Gojo', anime: 'Jujutsu Kaisen' },
+    { image: 'luffy.jpg', name: 'Luffy', anime: 'One Piece' },
+    { image: 'naruto.jpg', name: 'Naruto', anime: 'Naruto' },
   ];
 
-  const personalityCards = [
-    { title: 'Anime Chat Bot', subtitle: 'AI companion' },
-    { title: 'Top Anime Characters', subtitle: 'Rankings & polls' },
-    { title: 'Famous Quotes', subtitle: 'Iconic lines' },
-  ];
 
   return (
     <div className="flex h-screen bg-gray-900 text-white">
       {/* Left Sidebar */}
-      <aside className="w-64 bg-gray-800 p-4 flex flex-col space-y-4">
+      {/* <aside className="w-64 bg-gray-800 p-4 flex flex-col space-y-4">
         <Image src="/logo.png" alt="UwU Logo" width={60} height={20} className='ml-3' />
         <Separator className="mb-4 mt-1 bg-gray-600" />
         <nav className="space-y-2">
@@ -76,35 +63,35 @@ export default function HomeLayout() {
             </Button>
           ))}
         </nav>
-        {/* <Separator className="my-4 bg-gray-600" /> */}
-        {/* <Button  className="w-full justify-start text-white hover:bg-gray-700">
-          <TrendingUp className="mr-1 h-4 w-2" />
-          Upgrade 
-        </Button> */}
-        {/* <Separator className="my-4 bg-gray-600" /> */}
-        {/* <Button variant="ghost" className="w-full justify-start text-white hover:bg-gray-700">
-          <LogOut className="mr-2 h-4 w-4" />
-          Log out
-        </Button> */}
-      </aside>
+      </aside> */}
 
-      <div className="flex-1 flex flex-col">
+      <div className="">
         {/* Top Bar */}
-        <header className="flex justify-between items-center p-4 bg-gray-800 border-b border-gray-700">
-          <Input
+        <header className="w-full h-16 bg-gray-800 border-b border-gray-700">
+          <Image src="/logo.png" alt="UwU Logo" width={60} height={20} className='ml-3' />
+          <nav className='flex'>
+            {navigationItems.map((item, index) => (
+              <Button
+                key={index}
+                variant="ghost"
+                className="w-full justify-start text-white hover:bg-gray-700 hover:text-white"
+              >
+                <item.icon className="mr-2 h-4 w-4" />
+                {item.label}
+              </Button>
+            ))}
+            <Input
             placeholder="Search characters or quotes"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-64 bg-gray-700 border-gray-600 text-white placeholder-gray-400"
           />
           <div className="flex items-center space-x-4">
-            {/* <Button variant="ghost" size="sm" className="text-white hover:bg-gray-700">
-              <Bell className="h-4 w-4" />
-            </Button> */}
             <SignedIn>
               <UserButton />
             </SignedIn>
           </div>
+          </nav>
         </header>
 
         {/* Main Content */}
@@ -112,11 +99,52 @@ export default function HomeLayout() {
           {/* Continue Chatting Section */}
           <section>
             <h2 className="text-xl font-semibold mb-4">Continue chatting</h2>
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
               <Card className="bg-gray-800 border-gray-700 col-span-1">
                 <CardContent className="p-4">
-                  <div className="w-full h-20 bg-linear-to-br from-green-500 to-teal-600 rounded-lg mb-2"></div>
-                  <h3 className="font-medium">Current chat with Naruto</h3>
+                  {/* <div className="w-full h-20 bg-linear-to-br from-green-500 to-teal-600 rounded-lg mb-2"></div>
+                   */}
+                   <div className="w-full h-20 relative mx-auto mb-2">
+                      <Image
+                        src={`/naruto.jpg`}
+                        alt={'Naruto'}
+                        fill
+                        className="object-cover object-center rounded-xl"
+                      />
+                    </div>
+                  <h3 className="font-medium text-gray-300">Current chat with Naruto</h3>
+                  <p className="text-sm text-gray-400">Last message 30 sec ago</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-gray-800 border-gray-700 col-span-1">
+                <CardContent className="p-4">
+                  {/* <div className="w-full h-20 bg-linear-to-br from-green-500 to-teal-600 rounded-lg mb-2"></div>
+                   */}
+                   <div className="w-full h-20 relative mx-auto mb-2">
+                      <Image
+                        src={`/rem.jpg`}
+                        alt={'rem'}
+                        fill
+                        className="object-cover object-center rounded-xl"
+                      />
+                    </div>
+                  <h3 className="font-medium text-gray-300">Current chat with Rem</h3>
+                  <p className="text-sm text-gray-400">Last message 30 sec ago</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-gray-800 border-gray-700 col-span-1">
+                <CardContent className="p-4">
+                  {/* <div className="w-full h-20 bg-linear-to-br from-green-500 to-teal-600 rounded-lg mb-2"></div>
+                   */}
+                   <div className="w-full h-20 relative mx-auto mb-2">
+                      <Image
+                        src={`/mikasa.jpg`}
+                        alt={'mikasa'}
+                        fill
+                        className="object-cover object-center rounded-xl"
+                      />
+                    </div>
+                  <h3 className="font-medium text-gray-300">Current chat with Mikasa</h3>
                   <p className="text-sm text-gray-400">Last message 30 sec ago</p>
                 </CardContent>
               </Card>
@@ -129,10 +157,18 @@ export default function HomeLayout() {
             <div className="grid grid-cols-4 gap-4">
               {updateCards.map((card, index) => (
                 <Card key={index} className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors">
-                  <CardContent className="p-4">
-                    <div className="w-full h-32 bg-linear-to-br from-purple-500 to-blue-600 rounded-lg mb-2"></div>
-                    <h3 className="font-medium">{card.title}</h3>
-                    <p className="text-sm text-gray-400">{card.subtitle}</p>
+                  <CardContent className="p-2 text-center flex justify-between flex-col">
+                    {/* <div className="w-full h-32 bg-linear-to-br from-purple-500 to-blue-600 rounded-lg mb-2"></div> */}
+                    <div className="w-full h-[150px] relative mx-auto mb-2">
+                      <Image
+                        src={`/${card.image}`}
+                        alt={card.name}
+                        fill
+                        className="object-cover object-center rounded-xl"
+                      />
+                    </div>
+                    <h3 className="font-medium text-gray-300">{card.name}</h3>
+                    <p className="text-sm text-gray-400">{card.anime}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -144,9 +180,9 @@ export default function HomeLayout() {
       {/* Right Sidebar */}
       <aside className="w-80 bg-gray-800 p-4 flex flex-col space-y-4 border-l border-gray-700">
         <h2 className="text-lg font-semibold">Character Interactions</h2>
-        <div className="space-y-3 max-h-[calc(100vh-200px)] overflow-y-auto">
+        <div className="space-y-3 max-h-[87%] overflow-y-auto scrollbar-hide my-auto">
           {characterInteractions.map((interaction, index) => (
-            <Card key={index} className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors">
+            <Card key={index} className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer">
               <CardContent className="p-3 flex items-center space-x-3">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="bg-linear-to-r from-purple-500 to-pink-500 text-white text-xs">
@@ -154,7 +190,7 @@ export default function HomeLayout() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{interaction.name}</p>
+                  <p className="text-sm font-medium truncate text-gray-300">{interaction.name}</p>
                   <p className="text-xs text-gray-400">{interaction.time}</p>
                 </div>
                 <MessageCircle className="h-4 w-4 text-gray-400" />

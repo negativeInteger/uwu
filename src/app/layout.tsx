@@ -3,6 +3,7 @@ import { Titillium_Web } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
+import { ApolloWrapper } from "@/lib/apolloWrapper";
 
 const titillium = Titillium_Web({
   variable: "--font-titillium",
@@ -21,15 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <ClerkProvider
       appearance={{
         theme: dark
       }}>
-      <html lang="en">
-        <body className={`${titillium.variable} antialiased`}>
-          {children}
-        </body>
-      </html>
+      <ApolloWrapper>
+        <html lang="en">
+          <body className={`${titillium.variable} antialiased`}>
+            {children}
+          </body>
+        </html>
+      </ApolloWrapper>
     </ClerkProvider>
   )
 }
